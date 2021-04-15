@@ -1,0 +1,272 @@
+$bg1-color: #f57173;
+$bg2-color: #5a5ee7;
+
+$header-color: #f57173;
+
+$text-color1: #d2d3e3;
+$text-color2: #8f8da5;
+
+
+body {
+    height:100vh;
+    width:100vw;
+    background:linear-gradient(160deg,$bg2-color, $bg2-color 60%, $bg1-color 60%,$bg1-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.app {
+    width: 500px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+
+    .app-wrapper {
+        width: 90%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        .header {
+            color: $header-color;
+            text-align: center;
+            .title {
+                margin-top: 20px;
+                margin-bottom: 5px;
+                font-size: 35px;
+            }
+            .date-time_wrapper {
+                display: flex;
+                justify-content:space-between;
+                margin-bottom: 0;
+                .date {
+
+                    div {
+                        font-size: 32px;
+                        color:$bg2-color;
+                    }
+                    span {
+                        color:$text-color2;
+                        float: left;
+                        font-size: 20px;
+                    }
+                }
+                .total-tasks {
+                    font-size: 16px;
+                    span {
+                        color:$text-color2;
+                        line-height: 4;
+                    }
+                }
+            }
+            .clock {
+                font-size: 20px;
+                font-style:italic;
+                margin-bottom:20px;
+            }
+
+            .input-wrapper {
+                text-align: center;
+                width: 100%;
+                height: 30px;
+                input {
+                    width: 70%;
+                    height: 100%;
+                    outline: none;
+                    &::placeholder {
+                        color: $text-color2;
+                        padding-left: 5px;
+                        font-style:italic;
+
+                    }
+  
+                }
+                .submit-btn {
+                    border-radius: 5px;
+                    height: 100%;
+                    border: none;
+                    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+                    background: $bg1-color;
+                    color: white;
+                    font-size: 16px;
+                    letter-spacing: .08em;
+                    text-transform: uppercase;
+                    position: relative;
+                    transition: background-color .6s ease;
+                    overflow: hidden;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 50%;
+                        left: 50%;
+                        transform-style: flat;
+                        transform: translate3d(-50%,-50%,0);
+                        background: rgba(white,.1);
+                        border-radius: 100%;
+                        transition: width .3s ease, height .3s ease;
+                        }
+                    &:focus,
+                    &:hover {
+                        background: darken(#FC6E51,7%);
+                        outline: none;
+  
+                    }
+                    &:active {
+                        &:after {
+                        border: 0;
+                        width: 200px;
+                        height: 200px;
+                        }
+                    }
+ 
+                    
+                }
+            }
+        }
+        .body {
+            margin: 30px 0;
+            .todo_list {
+                padding:0;
+                list-style: none;
+                .list_item {
+                    border-bottom: 1px solid $text-color1;
+                    &:hover{
+                        .list_item--wrapper {
+
+                            .control_btn {
+                                display: block;
+                            }
+                        }
+                    }
+                    .list_item--wrapper {
+                        font-size: 24px;
+                        color: $text-color2;
+                        display: flex;
+                        justify-content: space-between;
+                        padding:15px 0 10px 0;
+
+                        .main-content {
+                            color: $text-color2;
+                            display: flex;
+                            input {
+                                box-sizing: border-box;
+                                position: relative;
+                                width: 17px;
+                                height: 17px;
+                                margin: 0;
+                                margin-right: 30px;
+                                color: black;
+                                border: 3px solid $text-color1;
+                                border-radius: 4px;
+                                appearance: none;
+                                outline: 0;
+                                cursor: pointer;
+                                // transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+                                &::before {
+                                  position: absolute;
+                                  content: '';
+                                  display: block;
+                                  top: -3px;
+                                  left: 2px;
+                                  width: 4px;
+                                  height: 11px;
+                                  border-style: solid;
+                                  border-color: white;
+                                  border-width: 0 2px 2px 0;
+                                  transform: rotate(45deg);
+                                  opacity: 0;
+                                }
+                                &:checked {
+                                  color: white;
+                                  border-color: $bg1-color;
+                                  background: $bg1-color;
+                                  &::before {
+                                    opacity: 1;
+                                  }
+                                }
+                              }
+                            
+                        }
+                        .checked {
+                            text-decoration: line-through;
+                            color: $text-color1;
+                        }
+                        .control_btn {
+                            height: 15px;
+                            display: none;
+                            img {
+                                height:100%;
+                                margin: 0 4px;
+                                cursor: pointer;
+    
+                            }
+                        }
+                    }
+
+                    .curTime {
+                        color:$text-color1 ;
+                        margin-left: 50px;
+                        font-weight: lighter;
+                    }
+
+                    .editInput-wrapper {
+                        color: $text-color2;
+                        padding:25px 0;
+                        border-bottom: 1px solid $text-color1;
+                        display: flex;
+                        justify-content: space-between;
+                        input {
+                            margin-left: 50px;
+                            outline: none;
+                            border: none;
+                            width: 75%;
+                            font-size: 24px;
+                            color: $text-color2;
+                        }
+                        img {
+                            height: 20px;
+                            cursor: pointer;
+                        }
+                    }
+                   
+                }
+            }
+        }
+
+        .footer {
+            margin-bottom: 30px;
+            .filters {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                padding: 0;
+                li {
+                    margin: 0 5px;
+                    padding: 0 2px;
+                    font-weight: 500;
+                    font-size: 20px;
+                    a {
+                        text-decoration: none;
+                        color: $text-color2;
+                    }
+    
+                }
+                .selected {
+                    border: 1px solid $text-color1;
+                    border-radius: 3px;
+                    // background-color: $text-color1;
+                    box-shadow: 0px 0px 3px -2px ;
+                    // a {
+                    //     color:$bg2-color;
+                    // }
+                }
+            }
+        }
+       
+        
+    }
+
+    
+}

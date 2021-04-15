@@ -1,0 +1,322 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(160deg, #5a5ee7, #5a5ee7 60%, #f57173 60%, #f57173);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.app {
+  width: 500px;
+  background-color: white;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.app .app-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.app .app-wrapper .header {
+  color: #f57173;
+  text-align: center;
+}
+
+.app .app-wrapper .header .title {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 35px;
+}
+
+.app .app-wrapper .header .date-time_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.app .app-wrapper .header .date-time_wrapper .date div {
+  font-size: 32px;
+  color: #5a5ee7;
+}
+
+.app .app-wrapper .header .date-time_wrapper .date span {
+  color: #8f8da5;
+  float: left;
+  font-size: 20px;
+}
+
+.app .app-wrapper .header .date-time_wrapper .total-tasks {
+  font-size: 16px;
+}
+
+.app .app-wrapper .header .date-time_wrapper .total-tasks span {
+  color: #8f8da5;
+  line-height: 4;
+}
+
+.app .app-wrapper .header .clock {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.app .app-wrapper .header .input-wrapper {
+  text-align: center;
+  width: 100%;
+  height: 30px;
+}
+
+.app .app-wrapper .header .input-wrapper input {
+  width: 70%;
+  height: 100%;
+  outline: none;
+}
+
+.app .app-wrapper .header .input-wrapper input::-webkit-input-placeholder {
+  color: #8f8da5;
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.app .app-wrapper .header .input-wrapper input:-ms-input-placeholder {
+  color: #8f8da5;
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.app .app-wrapper .header .input-wrapper input::-ms-input-placeholder {
+  color: #8f8da5;
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.app .app-wrapper .header .input-wrapper input::placeholder {
+  color: #8f8da5;
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.app .app-wrapper .header .input-wrapper .submit-btn {
+  border-radius: 5px;
+  height: 100%;
+  border: none;
+  -webkit-box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+  background: #f57173;
+  color: white;
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  position: relative;
+  -webkit-transition: background-color .6s ease;
+  transition: background-color .6s ease;
+  overflow: hidden;
+}
+
+.app .app-wrapper .header .input-wrapper .submit-btn:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  -webkit-transform-style: flat;
+          transform-style: flat;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+  -webkit-transition: width .3s ease, height .3s ease;
+  transition: width .3s ease, height .3s ease;
+}
+
+.app .app-wrapper .header .input-wrapper .submit-btn:focus, .app .app-wrapper .header .input-wrapper .submit-btn:hover {
+  background: #fb512e;
+  outline: none;
+}
+
+.app .app-wrapper .header .input-wrapper .submit-btn:active:after {
+  border: 0;
+  width: 200px;
+  height: 200px;
+}
+
+.app .app-wrapper .body {
+  margin: 30px 0;
+}
+
+.app .app-wrapper .body .todo_list {
+  padding: 0;
+  list-style: none;
+}
+
+.app .app-wrapper .body .todo_list .list_item {
+  border-bottom: 1px solid #d2d3e3;
+}
+
+.app .app-wrapper .body .todo_list .list_item:hover .list_item--wrapper .control_btn {
+  display: block;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper {
+  font-size: 24px;
+  color: #8f8da5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px 0 10px 0;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .main-content {
+  color: #8f8da5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .main-content input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  margin-right: 30px;
+  color: black;
+  border: 3px solid #d2d3e3;
+  border-radius: 4px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .main-content input::before {
+  position: absolute;
+  content: '';
+  display: block;
+  top: -3px;
+  left: 2px;
+  width: 4px;
+  height: 11px;
+  border-style: solid;
+  border-color: white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 0;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .main-content input:checked {
+  color: white;
+  border-color: #f57173;
+  background: #f57173;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .main-content input:checked::before {
+  opacity: 1;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .checked {
+  text-decoration: line-through;
+  color: #d2d3e3;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .control_btn {
+  height: 15px;
+  display: none;
+}
+
+.app .app-wrapper .body .todo_list .list_item .list_item--wrapper .control_btn img {
+  height: 100%;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.app .app-wrapper .body .todo_list .list_item .curTime {
+  color: #d2d3e3;
+  margin-left: 50px;
+  font-weight: lighter;
+}
+
+.app .app-wrapper .body .todo_list .list_item .editInput-wrapper {
+  color: #8f8da5;
+  padding: 25px 0;
+  border-bottom: 1px solid #d2d3e3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.app .app-wrapper .body .todo_list .list_item .editInput-wrapper input {
+  margin-left: 50px;
+  outline: none;
+  border: none;
+  width: 75%;
+  font-size: 24px;
+  color: #8f8da5;
+}
+
+.app .app-wrapper .body .todo_list .list_item .editInput-wrapper img {
+  height: 20px;
+  cursor: pointer;
+}
+
+.app .app-wrapper .footer {
+  margin-bottom: 30px;
+}
+
+.app .app-wrapper .footer .filters {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.app .app-wrapper .footer .filters li {
+  margin: 0 5px;
+  padding: 0 2px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.app .app-wrapper .footer .filters li a {
+  text-decoration: none;
+  color: #8f8da5;
+}
+
+.app .app-wrapper .footer .filters .selected {
+  border: 1px solid #d2d3e3;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 3px -2px;
+          box-shadow: 0px 0px 3px -2px;
+}
+/*# sourceMappingURL=main.css.map */
