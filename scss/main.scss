@@ -232,6 +232,11 @@ body {
                     }
                    
                 }
+                p {
+                    color: $bg1-color;
+                    font-size: 24px;
+                    text-align: center;
+                }
             }
         }
 
@@ -256,11 +261,8 @@ body {
                 .selected {
                     border: 1px solid $text-color1;
                     border-radius: 3px;
-                    // background-color: $text-color1;
                     box-shadow: 0px 0px 3px -2px ;
-                    // a {
-                    //     color:$bg2-color;
-                    // }
+        
                 }
             }
         }

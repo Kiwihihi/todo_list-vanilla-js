@@ -4,31 +4,33 @@ const deleteImgURL = './assets/icons/delete.png'
 const editImgURL = './assets/icons/edit.png'
 const confirmImgURL = './assets/icons/confirm.png'
 const app = {
-
+    
     data:{
         toDos:[
-            {title:'coding', 
-                isComplete: false, 
-                id:'coding0',
-                time:'8:00 PM',
+            // {title:'coding', 
+            //     isComplete: false, 
+            //     id:'coding0',
+            //     time:'8:00 PM',
 
-            },
-            {title:'Go football',
-                isComplete: true, 
-                id:'Gofootball1',
-                time:'9:15 AM',
+            // },
+            // {title:'Go football',
+            //     isComplete: true, 
+            //     id:'Gofootball1',
+            //     time:'9:15 AM',
 
-            },
-            {title:'Running', 
-                isComplete: false, 
-                id:'Running2',
-                time:'4:00 AM',
+            // },
+            // {title:'Running', 
+            //     isComplete: false, 
+            //     id:'Running2',
+            //     time:'4:00 AM',
 
-            },
+            // },
         ],
         inputValue:'',
+        filterSts:'all'
    
     },
+    
 
     setCurDateTime: function() {
         let date = new Date();
@@ -164,17 +166,28 @@ const app = {
 
         //Set inputValue
             const inputEl = $('.input')
+            inputEl.onkeypress = (e) => {
+
+                if(e.charCode === 13) {
+                    this.data.inputValue = e.target.value
+                    inputEl.value = ''
+                    addTask()
+                }
+            }
             inputEl.onchange = (e) => {
+                console.log('Changed')
                 this.data.inputValue = e.target.value
                 inputEl.value = ''
             }
         //Add task
-            $('.submit-btn').onclick = () => {
+            const addTask = () => {
+                console.log('Added')
                 const date = new Date()
                 const curTime = date.toLocaleString(
                     'en-US', 
                     { hour: 'numeric', minute: 'numeric', hour12: true }
                 )
+
                 const newTask = this.data.inputValue
                 const oldTask = this.data.toDos
                 if(newTask) {
@@ -187,21 +200,37 @@ const app = {
                     }
                     ]
                     this.data.toDos = updatedList
+                    this.render()
+                    this.data.inputValue = ''
                 }
     
+            }
+       
+            $('.submit-btn').onclick = () => {
+                addTask()
+            }
+
+            $('.filters').onclick = (e) => {
+                console.log(e.target.parentNode.id)
+                const filterSts = e.target.parentNode.id
+                $$('.filterBtn').forEach(btn =>{
+                    if(btn.id === filterSts) {
+                        btn.setAttribute("class", `filterBtn selected`)
+                    }else {
+                        btn.setAttribute("class", `filterBtn`)
+                    }
+                })
+                this.data.filterSts = filterSts
                 this.render()
-                this.data.inputValue = ''
+
             }
         
-
-
     },
  
     handleInputEdit:function() {
         //Edit Input Onchange
         $('.editInput').onchange = (e) => {
             const liNode = e.target.parentNode.parentNode
-            console.log(liNode.id)
             let updatedList = [...this.data.toDos]
             //get index
             const index = updatedList.findIndex(
@@ -218,14 +247,12 @@ const app = {
         }
 
         $('.confirmEditBtn').onclick = () => {
-            console.log("Click")
             this.render()
         }
     },
 
     //show time
      showTime: function() {
-         console.log($('.clock'))
         let time = new Date();
         let hour = time.getHours();
         let min = time.getMinutes();
@@ -252,40 +279,73 @@ const app = {
                 
     },
     render: function() {
+
+        console.log(this.data.toDos)
         this.setCurDateTime()
         this.setTotalTask()
-        const html = this.data.toDos.map(item => {
-            const isChecked = item.isComplete ? 'checked' : ''
-            let className = ''
-            className = isChecked? 'main-content checked' : 'main-content'
-            return `
-            <li class="list_item" id="${item.id}">
-                <div class="list_item--wrapper">
-                    <div class="${className}">
-                        <input id="${item.id}" 
-                            class="check-box" 
-                            type="checkbox"
-                            ${isChecked}>
-                            <div class="title">
-                                ${item.title}
-                            </div>
-            
-                    </div>
+        if(this.data.toDos.length === 0) {
+            $('.todo_list').innerHTML = `<p>Please start adding task!</p>`
 
-                    <div class="control_btn">
-                        <img id="${item.id}" class ="delete_btn" src="${deleteImgURL}"  />
-                        <img id="${item.id}" class ="edit_btn" src="${editImgURL}"  />
+        }else {
+            const html =this.data.toDos
+            .filter(task => {
+                const filterSts = this.data.filterSts
+                if(filterSts === 'all'){
+                  return true
+                }
+                if(filterSts === 'active') {
+                  return task.isComplete === false
+                }
+                if(filterSts === 'completed') {
+                  return task.isComplete === true
+                }
+              })
+            .map(item => {
+                const isChecked = item.isComplete ? 'checked' : ''
+                let className = ''
+                className = isChecked? 'main-content checked' : 'main-content'
+                return `
+                <li class="list_item" id="${item.id}">
+                    <div class="list_item--wrapper">
+                        <div class="${className}">
+                            <input id="${item.id}" 
+                                class="check-box" 
+                                type="checkbox"
+                                ${isChecked}>
+                                <div class="title">
+                                    ${item.title}
+                                </div>
+                
+                        </div>
+
+                        <div class="control_btn">
+                            <img id="${item.id}" class ="delete_btn" src="${deleteImgURL}"  />
+                            <img id="${item.id}" class ="edit_btn" src="${editImgURL}"  />
+                        </div>
                     </div>
-                </div>
-                <div class="curTime">
-                ${item.time}
-                </div>
-            </li>
-            `
-        })
+                    <div class="curTime">
+                    ${item.time}
+                    </div>
+                </li>
+                `
+            })
         $('.todo_list').innerHTML = html.join(' ')
+        }
+
+        localStorage.setItem("Tasks", JSON.stringify(this.data.toDos));
+
+      
     },
     start: function() {
+        const tasks = JSON.parse(localStorage.getItem("Tasks"))
+        console.log(tasks)
+
+        if(tasks) {
+            this.data.toDos = tasks
+        }else {
+            console.log('local storage empty')
+        }
+
         this.render()
         setInterval(this.showTime, 1000);
         this.handleEvents()
